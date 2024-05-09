@@ -1,23 +1,25 @@
+<?php
 
-<?php 
+// Membuat session
     session_start();
-    // if (isset($_SESSION['login'])){
-    //     header("location: listBarang.php");
-    // }
 
+    //Jika tombol login ditekan
     if(isset($_POST['login'])){
+
+      // Menghubungkan dengan file koneksi dan class login
     include_once "koneksi.php";
     include_once "auth.php";
 
     $auth = new Auth;
 
-
+// Memindahkan variable
     $username = $_POST["username"];
     $password = $_POST["password"];
 
     $result = $auth->login($username, $password);
 }
 
+// Pengkondisian jika password atau username salah
 if (isset($_GET['error']) && $_GET['error'] == 1) {
     $error = $_GET["error"];
 }
@@ -28,65 +30,12 @@ if (isset($_GET['error']) && $_GET['error'] == 1) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Form</title>
-<style>
-    body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.login-container {
-  max-width: 400px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-</style>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
   <div class="login-container">
-    <form action="" method="post">
-                
+    <!-- Form Login  -->
+    <form action="" method="post">     
       <h2>Login</h2>
       <div class="input-group">
           <?php if(isset($error)): ?>
@@ -99,6 +48,7 @@ button:hover {
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
       </div>
+      <!-- Tombol untuk men-trigger fungsi login diatas -->
       <button name="login" type="submit">Login</button>
     </form>
   </div>
