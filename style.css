@@ -1,0 +1,18 @@
+td{
+              border: 1px solid black;
+              padding: 2px;  
+              background-color: #ddeee0;
+            }
+            th{
+                border: 1px dashed black;
+                pad: 3px;
+                background-color: #F3C960;
+            }
+
+            .bg_red{
+                background-color: red;
+            }
+
+            .border_rad_5{
+                border-radius: 5px;
+            }
